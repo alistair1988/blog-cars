@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
-function BlogList() {
-    return(
-<div>
-    <h1>Blog List</h1>
-</div>
+function BlogList(props) {
+    const sidebar = (
+        <ul>
+            {props.posts.map((post) =>
+                <li key={post.id}>
+                    {post.title}
+                </li>
+            )}
+        </ul>
     )
+    return (
+        <div>
+            <div>
+                {sidebar}
+            </div>
+        </div>
+    );
 }
+
 
 export default BlogList

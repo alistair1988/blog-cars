@@ -10,9 +10,15 @@ function App() {
     <div>
 <Navtop/>
 <Headsection/>
-<BlogList/>
+<BlogList posts={posts}/>
 </div>
   );
 }
+
+
+const posts = [
+  {id: 1, title: 'First title', content: 'This is the first post'},
+  {id: 2, title: 'Second post', content: 'This is the second post'}
+]
 
 export default App;
