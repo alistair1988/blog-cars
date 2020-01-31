@@ -18,7 +18,9 @@ function App() {
 
 const posts = [
   {id: 1, title: 'First title', content: 'This is the first post'},
-  {id: 2, title: 'Second post', content: 'This is the second post'}
+  {id: 2, title: 'Second post', content: 'This is the second post'},
+  {id: 3, title: 'Third post', content: 'This is the third post'}
+
 ]
 
 export default App;
