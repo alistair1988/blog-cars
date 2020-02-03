@@ -4,23 +4,31 @@ var { buildSchema } = require('graphql');
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
-type Query {
-    quoteOfTheDay: String
-    random: Float!
-    rollThreeDice: [Int]
+type User {
+    id: String
+    name: String
+   }
+
+   type Query {
+       user(id: String): User
    }
 `)
 
-// The root provides a resolver function for each API endpoint
+// Maps id to User object
+var fakeDatabase = {
+    'a' : {
+        id: 'a',
+        name: 'alice',
+    },
+    'b': {
+        id: 'b',
+        name: 'bob',
+    },
+};
+
 var root = {
-    quoteOfTheDay: () => {
-        return Math.random() < 0.5 ? 'Take it easy' : 'Salvation lies within';
-    },
-    random: () => {
-        return Math.random();
-    },
-    rollThreeDice: () => {
-        return [1, 2, 3].map(_ => 1 + Math.floor(Math.random() * 6));
+    user: ({id}) => {
+        return fakeDatabase[id];
     }
 };
 
@@ -31,5 +39,7 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
 }));
 
-app.listen(4000);
-console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+app.listen(4000, () => {
+    console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+
+});
